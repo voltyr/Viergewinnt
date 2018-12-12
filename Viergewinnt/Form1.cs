@@ -25,7 +25,9 @@ namespace Viergewinnt
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
+            this.KeyPreview = true;
+
             for (int x = 0; x <= 6; x++)
                 {
                 for (int y = 0; y <= 5; y++)
@@ -123,8 +125,18 @@ namespace Viergewinnt
                     winner = "Rot";
                     loser = "Blau";
                     }
-                MessageBox.Show(winner + " hat gewonnen, " + loser + " ist ein Loooooooooooooser^^");    
-            }
+
+                this.KeyPreview = false;
+                MessageBox.Show(winner + " hat gewonnen, " + loser + " ist ein Loooooooooooooser^^");
+
+                for (int i = 0; i <= 6; i++)
+                {
+                    //bt_si.Enabled = false;
+                    string buttonName = "bt_s" + i;
+                    Controls[buttonName].Enabled = false;
+                }
+
+                }
             else //wenn nicht dann ändere spielfarbe
             {
                 if (state_blue == true)
@@ -368,5 +380,57 @@ namespace Viergewinnt
         {
             sortinarrayandsetbuttoncolor(6);
         }
+
+        private void bt_reset_Click(object sender, EventArgs e)
+        {
+            Form1 NewForm = new Form1();
+            NewForm.Show();
+            this.Dispose(false);
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+
+            switch (e.KeyCode)
+            {
+                case Keys.D1:
+                    this.bt_s0_Click(this, null);
+                    e.Handled = true;
+                    break;
+
+                case Keys.D2:
+                    this.bt_s1_Click(this, null);
+                    e.Handled = true;
+                    break;
+
+                case Keys.D3:
+                    this.bt_s2_Click(this, null);
+                    e.Handled = true;
+                    break;
+
+                case Keys.D4:
+                    this.bt_s3_Click(this, null);
+                    e.Handled = true;
+                    break;
+
+                case Keys.D5:
+                    this.bt_s4_Click(this, null);
+                    e.Handled = true;
+                    break;
+
+                case Keys.D6:
+                    this.bt_s5_Click(this, null);
+                    e.Handled = true;
+                    break;
+
+                case Keys.D7:
+                    this.bt_s6_Click(this, null);
+                    e.Handled = true;
+                    break;
+                    
+            }
+
+        }
+
     }
 }
